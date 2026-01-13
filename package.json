@@ -5,7 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "jest",
-    "test:e2e": "TEST_MODE=remote jest",
+    "test:e2e": "TEST_MODE=remote TEST_ENV=staging jest",
     "test:local": "TEST_MODE=local jest",
     "test:watch": "jest --watch",
     "typecheck": "tsc --noEmit"

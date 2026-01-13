@@ -19,7 +19,7 @@ export const PROFILES: Record<EnvProfileName, EnvProfile> = {
 
   staging: {
     name: 'staging',
-    baseUrl: 'https://staging.api.myapp.com',
+    baseUrl: 'https://reqres.in',
     timeoutMs: 30_000,
     retries: 1,
     allowDestructiveTests: false

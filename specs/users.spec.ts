@@ -6,10 +6,12 @@ describe('User API - E2E', () => {
     const user = new UserService(new HttpClient());
 
     await user
-      .getUser('123')
-      .verifyStatus(200)
-      .verifyRequiredFields()
-      .verifyName('John')
-      .verifyEmail('john@example.com');
+      .fetchMyProfile()
+
+      user.verifyProfileIsAccessible()
+      .verifyBasicProfileDetails()
+      .verifyUsername('john_doe')
+      .verifyEmail('john@example.com')
+      .verifyName('John', 'Doe');
   });
 });

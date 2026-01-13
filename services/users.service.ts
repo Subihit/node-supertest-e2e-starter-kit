@@ -12,15 +12,27 @@ export type UserProfile = {
   lastName?: string;
 };
 
+/**
+ * Service endpoints.
+ * Keep all endpoint definitions here.
+ */
+
+const ENDPOINTS = {
+  getCollections: '/app/collections/todos/records?limit=10'
+} as const;
+
+
 export class UserService extends BaseService<UserProfile> {
   private readonly rb: RequestBuilder;
 
-  constructor(client: HttpClient, token: string) {
+  constructor(client: HttpClient, token?: string) {
     super();
 
-    this.rb = new RequestBuilder(client)
-      .withAuth(token)
-      .asJson();
+    let builder = new RequestBuilder(client);
+    if (token) {
+      builder = builder.withAuth(token);
+    }
+    this.rb = builder.asJson();
   }
 
   /* =========================
@@ -29,7 +41,7 @@ export class UserService extends BaseService<UserProfile> {
 
   async fetchMyProfile(): Promise<this> {
     await report.step('Fetch current user profile', async () => {
-      const res = await this.rb.get('/users/me');
+      const res = await this.rb.get(ENDPOINTS.getCollections);
       this.setResponse(new ApiResponse<UserProfile>(res));
     });
 
