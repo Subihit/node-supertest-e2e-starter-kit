@@ -7,7 +7,7 @@
 export type CreateUserPayload = {
   email: string;
   project_id: string;
-//   role: 'admin' | 'user';
+  role: 'admin' | 'user';
 };
 
 export function createUserPayload(
@@ -16,7 +16,7 @@ export function createUserPayload(
   return {
     email: 'user@example.com',
     project_id: 'random_project_id',
-    // role: 'user',
+    role: 'user',
     ...overrides
   };
 }
